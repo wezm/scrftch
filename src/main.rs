@@ -1,14 +1,16 @@
 //! Attept to write screenfetch in Rust
+#![feature(attr_literals)]
 
 #[macro_use] extern crate prettytable;
 #[macro_use] extern crate lazy_static;
+#[macro_use] extern crate rust_embed;
+#[macro_use] extern crate log;
 extern crate regex;
 extern crate ini;
 extern crate sys_info;
 
 mod unix;
 mod windows;
-mod logos;
 
 use prettytable::Table;
 use prettytable::format;
@@ -23,6 +25,9 @@ fn main() {
     } else if cfg!(windows) {
         info = windows::info();
         os_name.push_str("windows");
+    } else {
+        info.push(vec!("Unexpected Error".to_owned(), "Unknown OS".to_owned()));
+        os_name = "unknown".to_owned();
     }
 
     let mut info_s = String::new();
@@ -38,9 +43,13 @@ fn main() {
     print_output(&get_logo(&os_name), &info_s);
 }
 
+#[derive(RustEmbed)]
+#[folder("res/logos/")]
+struct Logo;
+
 /// Get distro logo
 fn get_logo(distro: &str) -> String {
-    logos::LOGOS.get(distro).unwrap().to_string()
+    String::from_utf8(Logo::get(distro).unwrap_or(Logo::get("unknown").unwrap_or("UNKNOWN".as_bytes().to_vec()))).unwrap()
 }
 
 /// Print result to stdout
