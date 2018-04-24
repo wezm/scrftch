@@ -2,7 +2,7 @@
 name = "scrftch"
 version = "0.1.0"
 authors = ["Alexey Trifonov <avrong@outlook.com>"]
-description = "Attempt to write Screenfetch in Rust"
+description = "Screenfetch in Rust"
 repository = "https://github.com/avrong/scrftch"
 license = "MIT"
 
