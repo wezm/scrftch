@@ -1,7 +1,10 @@
 //! Information parser for windows systems
 
 use std::env;
+use std::str;
 use std::process::Command;
+
+use sys_info;
 
 /// Windows information
 pub fn info() -> Vec<Vec<String>>{
@@ -31,8 +34,11 @@ fn get_username() -> String {
 
 /// Get OS name
 fn get_system_name() -> String {
+    /*
     match Command::new("ver").output() {
         Ok(ver) => String::from_utf8(ver.stdout).unwrap(),
         Err(_) => "unknown".to_owned()
     }
+	*/
+	format!("{} {} ", sys_info::os_type().unwrap(), sys_info::os_release().unwrap())
 }
