@@ -7,10 +7,8 @@ repository = "https://github.com/avrong/scrftch"
 license = "MIT"
 
 [dependencies]
-regex = "0.2.10"
 prettytable-rs = "0.6.7"
 rust-ini = "0.11.0"
 sys-info = "0.5.6"
-lazy_static = "1.0.0"
 rust-embed = "1.1.1"
 log = "0.4.1"

@@ -2,10 +2,8 @@
 #![feature(attr_literals)]
 
 #[macro_use] extern crate prettytable;
-#[macro_use] extern crate lazy_static;
 #[macro_use] extern crate rust_embed;
 #[macro_use] extern crate log;
-extern crate regex;
 extern crate ini;
 extern crate sys_info;
 
