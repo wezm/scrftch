@@ -1,6 +1,7 @@
 //! Attept to write screenfetch in Rust
 #![feature(attr_literals)]
 
+extern crate clap;
 #[macro_use] extern crate prettytable;
 #[macro_use] extern crate rust_embed;
 #[macro_use] extern crate log;
@@ -10,10 +11,17 @@ extern crate sys_info;
 mod unix;
 mod windows;
 
+use clap::App;
 use prettytable::Table;
 use prettytable::format;
 
 fn main() {
+    App::new("SCRFTCH")
+        .version("0.1.1")
+        .about("Screefetch in Rust")
+        .author("Alexey T.")
+        .get_matches();
+    
     let mut info = Vec::new();
     let mut os_name = String::new();
 
