@@ -93,8 +93,9 @@ fn get_shell() -> String {
 
 /// Get current desktop environment name
 fn get_desktop() -> String {
-    match env::var("XDG_CURRENT_DESKTOP") {
-        Ok(desktop_name) => desktop_name,
-        Err(_) => "unknown".to_owned()
-    }
+    env::var("XDG_DESKTOP_SESSION")
+        .or_else(|_| env::var("XDG_CURRENT_DESKTOP"))
+        .or_else(|_| env::var("DESKTOP_SESSION"))
+        .ok()
+        .unwrap_or_else(|| "unknown".to_owned())
 }
