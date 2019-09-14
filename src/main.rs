@@ -1,5 +1,4 @@
 //! Attept to write screenfetch in Rust
-#![feature(attr_literals)]
 
 extern crate clap;
 #[macro_use] extern crate prettytable;
